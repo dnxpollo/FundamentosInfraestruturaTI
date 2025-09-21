@@ -57,47 +57,45 @@ void setup() {
     return;
   }
 
-  // Conecta ao Wi-Fi
-  WiFi.begin(ssid, password);
-  Serial.println("Conectando ao Wi-Fi...");
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.print(".");
-  }
+  // 🔌 Inicia a conexão com a rede Wi-Fi usando o SSID e a senha definidos
+WiFi.begin(ssid, password);
+Serial.println("Conectando ao Wi-Fi...");
 
-  Serial.println("\nWi-Fi conectado!");
-  Serial.print("Endereço IP: ");
-  Serial.println(WiFi.localIP());
-
-  // Rotas do servidor
-  server.on("/", handleRoot);
-
-  server.on("/assets/horta.jpg", HTTP_GET, []() {
-    File file = SPIFFS.open("/horta.jpg", "r");
-    server.streamFile(file, "image/jpeg");
-    file.close();
-  });
-
-  server.on("/assets/jardinagem.jpg", HTTP_GET, []() {
-    File file = SPIFFS.open("/jardinagem.jpg", "r");
-    server.streamFile(file, "image/jpeg");
-    file.close();
-  });
-
-  server.on("/assets/apae.png", HTTP_GET, []() {
-    File file = SPIFFS.open("/apae.png", "r");
-    server.streamFile(file, "image/png");
-    file.close();
-  });
-
-  server.begin();  // Inicia o servidor
-  Serial.println("Servidor iniciado.");
+// ⏳ Aguarda até que a conexão seja estabelecida
+while (WiFi.status() != WL_CONNECTED) {
+  delay(1000);              // Espera 1 segundo antes de tentar novamente
+  Serial.print(".");        // Imprime ponto no monitor serial para indicar progresso
 }
 
-void loop() {
-  server.handleClient();  // Mantém o servidor respondendo
-}
+// ✅ Conexão estabelecida — exibe mensagem e IP local
+Serial.println("\nWi-Fi conectado!");
+Serial.print("Endereço IP: ");
+Serial.println(WiFi.localIP());  // Mostra o IP atribuído ao ESP32
 
+// 🌐 Define a rota principal "/" que serve a página HTML
+server.on("/", handleRoot);
 
+// 🖼️ Rota para servir a imagem "horta.jpg" via SPIFFS
+server.on("/assets/horta.jpg", HTTP_GET, []() {
+  File file = SPIFFS.open("/horta.jpg", "r");         // Abre o arquivo da memória flash
+  server.streamFile(file, "image/jpeg");              // Envia o arquivo como resposta HTTP
+  file.close();                                       // Fecha o arquivo após envio
+});
 
+// 🖼️ Rota para servir a imagem "jardinagem.jpg"
+server.on("/assets/jardinagem.jpg", HTTP_GET, []() {
+  File file = SPIFFS.open("/jardinagem.jpg", "r");
+  server.streamFile(file, "image/jpeg");
+  file.close();
+});
 
+// 🖼️ Rota para servir a imagem "apae.png"
+server.on("/assets/apae.png", HTTP_GET, []() {
+  File file = SPIFFS.open("/apae.png", "r");
+  server.streamFile(file, "image/png");
+  file.close();
+});
+
+// 🚀 Inicia o servidor web na porta 80
+server.begin();
+Serial.println("Servidor iniciado.");
