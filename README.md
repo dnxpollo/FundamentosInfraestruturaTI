@@ -1,4 +1,6 @@
-🌐 Servidor Local com ESP32 — Fundamentos de Infraestrutura
+🌐 Projeto - Servidor Local com ESP32 — Fundamentos de Infraestrutura
+
+
 📘 Descrição
 Este projeto demonstra como transformar um ESP32 em um servidor web local, capaz de hospedar uma página HTML acessível via Wi-Fi.
 A atividade foi desenvolvida como parte da disciplina de Fundamentos de Infraestrutura, utilizando a IDE Arduino na versão 2.3.6.
