@@ -1,5 +1,4 @@
-🌐 Projeto - Servidor Local com ESP32 — Fundamentos de Infraestrutura
-
+🌐 Projeto - ESP32 Microserver
 
 📘 Descrição
 Este projeto demonstra como transformar um ESP32 em um servidor web local, capaz de hospedar uma página HTML acessível via Wi-Fi.
@@ -56,3 +55,46 @@ Como servir arquivos estáticos com SPIFFS.
 Como estruturar rotas e responder requisições HTTP.
 
 Como integrar HTML, CSS e JavaScript em sistemas embarcados.
+
+
+
+-----------------------------------------------------------------------------------------
+
+💻Simulação local: Alternativa sem o hardware ESP32
+
+Permite explorar conceitos de servidor embarcado, arquitetura cliente x servidor, e integração web simulando diretamente no computador.
+
+🎯 Objetivos
+- Reproduzir a lógica de um servidor HTTP local.
+- Simular o comportamento de SPIFFS servindo arquivos estáticos localmente.
+- Compreender o fluxo de requisições e respostas HTTP.
+
+
+🛠️Ferramentas 
+- Visual Studio Code com a extensão Live Server.
+- Python 3 com módulo http.server.
+- Node.js com http-server ou Express.js.
+
+
+🚀Execução
+  - Live Server
+      ¹ Instale a extensão Live Server.
+      ² Abra a pasta do projeto.
+      ³ Clique com botão direito no arquivo `index.html` e selecione "Open with Live Server".
+
+  -Python
+      ¹ No PROMPT/TERMINAL --> cd simulador
+                               python -m http.server 8080
+      ² Acesse http://localhost:8080 no navegador.
+
+  -Node.js
+      ¹ npm install -g http-server
+      ² http-server ./simulador -p 8080
+
+🧠 Aprendizados
+  -Como preparar arquivos para serem servidos por sistemas embarcados.
+  -Como o navegador interage com servidores HTTP.
+
+🧾Conclusão
+  Este projeto tem por finalidade oferecer uma introdução prática á arquitetura cliente-servidor em sistemas embarcados, com possibilidade de simulação local para ampliar o acesso e a compreensão dos conceitos fundamentais de infraestrutura de rede.
+  
